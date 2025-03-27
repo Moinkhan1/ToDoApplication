@@ -12,13 +12,23 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Light theme -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+
+                <!-- Default styles -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+                <!-- Color schemes -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+
+                <!-- Add TextBox styles specifically -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+
 
     <Window.DataContext>
         <viewmodels:MainWindowViewModel />
@@ -33,6 +43,7 @@
 
         <!-- Header -->
         <materialDesign:Card Grid.Row="0" Margin="16" Padding="8" UniformCornerRadius="8">
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -122,12 +133,12 @@
                      x:Name="NewTodoTextBox"
                      Margin="8,8,16,8"
                      materialDesign:HintAssist.Hint="Add a new todo..."
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                     Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
 
                 <Button Grid.Column="1"
                     Content="ADD"
                     Click="AddTodo_Click"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="6"
                     Margin="0,0,8,0"/>
             </Grid>

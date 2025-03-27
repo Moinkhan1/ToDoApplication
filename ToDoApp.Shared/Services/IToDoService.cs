@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using ToDoApp.Shared.Models;
+using System.ServiceModel;
 
 namespace ToDoApp.Shared.Services
 {
     [ServiceContract]
-    public interface ITodoService
+    public interface IToDoService
     {
         [OperationContract]
         List<ToDoItem> GetTodos();

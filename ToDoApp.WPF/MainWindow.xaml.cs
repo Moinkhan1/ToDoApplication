@@ -24,5 +24,10 @@ namespace ToDoApp.WPF
                 NewTodoTextBox.Text = string.Empty;
             }
         }
+
+        private void UpdateTodo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
