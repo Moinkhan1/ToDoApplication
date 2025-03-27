@@ -3,9 +3,10 @@ using ToDoApp.Shared.Models;
 using ToDoApp.Shared.Services;
 using System.Collections.Generic;
 
+
 namespace ToDoApp.WCF
 {
-    public class TodoService : ITodoService
+    public class TodoService : IToDoService
     {
         private readonly ToDoRepository _repository = new ToDoRepository();
 
