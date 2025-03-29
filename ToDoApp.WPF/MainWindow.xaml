@@ -81,9 +81,11 @@
                                 </Grid.ColumnDefinitions>
 
                                 <CheckBox Grid.Column="0" 
-                                      IsChecked="{Binding IsCompleted}" 
-                                      Margin="12"
-                                      VerticalAlignment="Center"/>
+                                IsChecked="{Binding IsCompleted, Mode=TwoWay}" 
+                                Margin="12"
+                                VerticalAlignment="Center"
+                                Command="{Binding DataContext.UpdateCompletionCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"/>
 
                                 <TextBlock Grid.Column="1" 
                                        Text="{Binding Title}" 
