@@ -35,6 +35,10 @@
     </Window.DataContext>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="179*"/>
+            <ColumnDefinition Width="613*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -42,7 +46,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <materialDesign:Card Grid.Row="0" Margin="16" Padding="8" UniformCornerRadius="8">
+        <materialDesign:Card Grid.Row="0" Margin="16" Padding="8" UniformCornerRadius="8" Grid.ColumnSpan="2">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -56,7 +60,7 @@
                                      Margin="8"/>
 
                 <TextBlock Grid.Column="1" 
-                       Text="MY TODO LIST" 
+                       Text="My Todo List" 
                        FontSize="24" 
                        FontWeight="Bold" 
                        VerticalAlignment="Center"/>
@@ -64,7 +68,7 @@
         </materialDesign:Card>
 
         <!-- Todo List -->
-        <ScrollViewer Grid.Row="1" Margin="16,0,16,16">
+        <ScrollViewer Grid.Row="1" Margin="16,0,16,16" Grid.ColumnSpan="2">
             <ItemsControl ItemsSource="{Binding Todos}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -122,10 +126,11 @@
         </ScrollViewer>
 
         <!-- Add Todo Section -->
-        <materialDesign:Card Grid.Row="2" Margin="16" Padding="8" UniformCornerRadius="8">
+        <materialDesign:Card Grid.Row="2" Margin="16" Padding="8" UniformCornerRadius="8" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="59*"/>
+                    <ColumnDefinition Width="616*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
@@ -133,14 +138,14 @@
                      x:Name="NewTodoTextBox"
                      Margin="8,8,16,8"
                      materialDesign:HintAssist.Hint="Add a new todo..."
-                     Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
+                     Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Grid.ColumnSpan="2"/>
 
-                <Button Grid.Column="1"
+                <Button Grid.Column="2"
                     Content="ADD"
                     Click="AddTodo_Click"
                     Style="{DynamicResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="6"
-                    Margin="0,0,8,0"/>
+                    Margin="0,14,8,13"/>
             </Grid>
         </materialDesign:Card>
     </Grid>
