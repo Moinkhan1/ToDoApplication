@@ -9,8 +9,10 @@ using ToDoApp.Shared.Services;
 
 namespace ToDoApp.WPF.Services
 {
-    public class TodoServiceClient : ClientBase<ITodoService>, ITodoService
+    public class TodoServiceClient : ClientBase<IToDoService>, IToDoService
     {
+        //public TodoServiceClient() : base("TodoServiceEndpoint")
+        
         public List<ToDoItem> GetTodos() => Channel.GetTodos();
 
         public ToDoItem GetTodoById(int id) => Channel.GetTodoById(id);

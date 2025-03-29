@@ -12,19 +12,33 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Light theme -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+
+                <!-- Default styles -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+                <!-- Color schemes -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+
+                <!-- Add TextBox styles specifically -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+
 
     <Window.DataContext>
         <viewmodels:MainWindowViewModel />
     </Window.DataContext>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="179*"/>
+            <ColumnDefinition Width="613*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -32,7 +46,8 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <materialDesign:Card Grid.Row="0" Margin="16" Padding="8" UniformCornerRadius="8">
+        <materialDesign:Card Grid.Row="0" Margin="16" Padding="8" UniformCornerRadius="8" Grid.ColumnSpan="2">
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -45,7 +60,7 @@
                                      Margin="8"/>
 
                 <TextBlock Grid.Column="1" 
-                       Text="MY TODO LIST" 
+                       Text="My Todo List" 
                        FontSize="24" 
                        FontWeight="Bold" 
                        VerticalAlignment="Center"/>
@@ -53,7 +68,7 @@
         </materialDesign:Card>
 
         <!-- Todo List -->
-        <ScrollViewer Grid.Row="1" Margin="16,0,16,16">
+        <ScrollViewer Grid.Row="1" Margin="16,0,16,16" Grid.ColumnSpan="2">
             <ItemsControl ItemsSource="{Binding Todos}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -66,9 +81,11 @@
                                 </Grid.ColumnDefinitions>
 
                                 <CheckBox Grid.Column="0" 
-                                      IsChecked="{Binding IsCompleted}" 
-                                      Margin="12"
-                                      VerticalAlignment="Center"/>
+                                IsChecked="{Binding IsCompleted, Mode=TwoWay}" 
+                                Margin="12"
+                                VerticalAlignment="Center"
+                                Command="{Binding DataContext.UpdateCompletionCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"/>
 
                                 <TextBlock Grid.Column="1" 
                                        Text="{Binding Title}" 
@@ -111,10 +128,11 @@
         </ScrollViewer>
 
         <!-- Add Todo Section -->
-        <materialDesign:Card Grid.Row="2" Margin="16" Padding="8" UniformCornerRadius="8">
+        <materialDesign:Card Grid.Row="2" Margin="16" Padding="8" UniformCornerRadius="8" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="59*"/>
+                    <ColumnDefinition Width="616*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
@@ -122,14 +140,14 @@
                      x:Name="NewTodoTextBox"
                      Margin="8,8,16,8"
                      materialDesign:HintAssist.Hint="Add a new todo..."
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                     Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Grid.ColumnSpan="2"/>
 
-                <Button Grid.Column="1"
+                <Button Grid.Column="2"
                     Content="ADD"
                     Click="AddTodo_Click"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="6"
-                    Margin="0,0,8,0"/>
+                    Margin="0,14,8,13"/>
             </Grid>
         </materialDesign:Card>
     </Grid>

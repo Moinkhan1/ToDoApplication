@@ -8,7 +8,7 @@ using ToDoApp.Shared.Models;
 
 namespace ToDoApp.Shared.Data
 {
-    public class TodoDbContext:DbContext
+    public class TodoDbContext : DbContext
     {
         public TodoDbContext() : base("name=TodoDbContext") { }
         public DbSet<ToDoItem> Todos { get; set; }

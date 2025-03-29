@@ -24,5 +24,6 @@ namespace ToDoApp.WPF
                 NewTodoTextBox.Text = string.Empty;
             }
         }
+
     }
 }
