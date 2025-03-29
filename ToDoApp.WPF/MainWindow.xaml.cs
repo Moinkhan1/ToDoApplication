@@ -25,9 +25,5 @@ namespace ToDoApp.WPF
             }
         }
 
-        private void UpdateTodo_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -115,8 +115,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditTodoDialog.xaml.cs">
+      <DependentUpon>EditTodoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\ToDoServiceClient.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Page Include="EditTodoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
