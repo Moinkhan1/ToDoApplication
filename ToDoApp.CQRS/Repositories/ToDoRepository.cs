@@ -17,6 +17,11 @@ namespace ToDoApp.CQRS.Repositories
             _context = new TodoDbContext();
         }
 
+        public ToDoRepository(TodoDbContext context)
+        {
+            _context = context;
+        }
+
         public List<ToDoItem> GetTodos() => _context.Todos.ToList();
 
         public ToDoItem GetTodoById(int id) => _context.Todos.Find(id);
@@ -29,10 +34,11 @@ namespace ToDoApp.CQRS.Repositories
 
         public void UpdateTodo(ToDoItem todo)
         {
-            _context.Todos.Attach(todo);
-            _context.Entry(todo).State = EntityState.Modified;
-            _context.SaveChanges();
+            _context.Todos.Attach(todo);  // ✅ Attach to track the entity
+            _context.SetEntityState(todo, EntityState.Modified); // ✅ Call the new wrapper method
+            _context.SaveChanges();  // ✅ Persist changes
         }
+
 
         public void DeleteTodo(int id)
         {
@@ -42,6 +48,10 @@ namespace ToDoApp.CQRS.Repositories
                 _context.Todos.Remove(todo);
                 _context.SaveChanges();
             }
+        }
+        public int Add(int a, int b)
+        {
+            return a + b;
         }
     }
 }
